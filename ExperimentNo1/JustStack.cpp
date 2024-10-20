@@ -1,6 +1,5 @@
 #include <stdio.h>
-
-// declaring the varibles here...
+// declareing the varibles for stack
 int size = 5;
 int top = -1;
 int val;
@@ -9,8 +8,6 @@ int STACK[5];
 int i;
 int j;
 int k;
-
-// declaring all the operation like isStackFull,isStackEmpty,PUSH,POP,Peek
 
 int isStackFull()
 {
@@ -36,11 +33,11 @@ int isStackEmpty()
     }
 }
 
-int push(int val)
+void push(int val)
 {
     if (isStackFull())
     {
-        printf("Stack is Full!\n");
+        printf("\n Stack is FULL!!!\n");
     }
     else
     {
@@ -53,25 +50,26 @@ int pop()
 {
     if (isStackEmpty())
     {
-        printf("Stack is Empty!\n");
+        printf("\n Stack is EMPTY!!!\n");
     }
     else
     {
         val = STACK[top];
         top--;
     }
+    return val;
 }
 
 int displayTop()
 {
     if (isStackEmpty())
     {
-        printf("Stack is Empty!\n");
+        printf("\n Stack is EMPTY!!!\n");
     }
     else
     {
         val = STACK[top];
-        printf(val);
+        printf("\n %d is the top\n", val);
     }
 }
 
@@ -79,11 +77,10 @@ int displayStack()
 {
     if (isStackEmpty())
     {
-        printf("Stack is Empty!\n");
+        printf("\n Stack is EMPTY!!!\n");
     }
     else
     {
-        //declaring the i = top because we want to print the stack as it is.
         for (i = top; i >= 0; i--)
         {
             val = STACK[i];
@@ -92,56 +89,67 @@ int displayStack()
     }
 }
 
-// this is void function this will execute first in program 
-void main()
+int main()
 {
+
     do
     {
-        printf("Enter Your Choice:\n");
-        printf("1.Push\n2.Pop\n3.StackIsEmpty\n4.StackIsFull\n5.Display Stack\n6.Display the Peek\n7.Exit\n");
-        printf("\n");
+        printf("\n+++++STACK OPERATION+++++\n");
+        printf("1.PUSH\n");
+        printf("2.POP\n");
+        printf("3.IS STACK EMPTY\n");
+        printf("4.IS STACK FULL\n");
+        printf("5.DISPLAY TOP\n");
+        printf("6.DISPLAY THE STACK\n");
+        printf("7.EXIT\n");
+        printf("\nEnter the Choice:");
         scanf("%d", &choice);
+
         switch (choice)
         {
         case 1:
-            printf("Enter the Value that you want to insert:\n");
+            printf("Enter the Number:");
             scanf("%d", &val);
             push(val);
             break;
-
         case 2:
             val = pop();
-            printf("Pop Value is = %d\n", val);
+            printf("Element Deleted Successfully:%d", val);
             break;
-
         case 3:
-            k = isStackEmpty();
-            if (k == 1)
-                printf("Stack is Empty\n");
-            else
-                printf("Stack is not Empty\n");
-            break;
-
-        case 4:
-            j = isStackFull();
+            j = isStackEmpty();
             if (j == 1)
-                printf("Stack is Full\n");
+            {
+                printf("STACK IS EMPTY!!!\n");
+            }
             else
-                printf("Stack is not Full\n");
+            {
+                printf("STACK IS NOT EMPTY!!");
+            }
             break;
-
+        case 4:
+            k = isStackFull();
+            if (k == 1)
+            {
+                printf("STACK IS FULL!!!\n");
+            }
+            else
+            {
+                printf("STACK IS NOT FULL!!\n");
+            }
+            break;
         case 5:
-            displayStack();
+            displayTop();
             break;
 
         case 6:
-            val = displayTop();
-            printf("Top is = %d\n", val);
+            displayStack();
             break;
 
         case 7:
-            printf("Exiting the Program!\n");
+            printf("THANKS!");
             break;
         }
     } while (choice != 7);
+    // return 0;
 }

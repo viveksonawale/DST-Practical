@@ -71,7 +71,7 @@ int displayTop()
     else
     {
         val = STACK[top];
-        printf(val);
+        printf("%d\n",val);
     }
 }
 
@@ -82,12 +82,13 @@ int displayStack()
         printf("Stack is Empty!\n");
     }
     else
-    {
+    { 
+        
         //declaring the i = top because we want to print the stack as it is.
         for (i = top; i >= 0; i--)
         {
             val = STACK[i];
-            printf("%d\n", val);
+            printf("%d\n", STACK[i]);
         }
     }
 }
