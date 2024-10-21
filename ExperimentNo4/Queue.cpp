@@ -92,7 +92,7 @@ void display()
         for (i = front; i <= rear; i++)
         {
             val = QUEUE[i];
-            printf("<--%d ", val);
+            printf(" %d ", val);
         }
     }
 }

@@ -1,57 +1,76 @@
 #include <stdio.h>
 #include <string.h>
-// #include <conio.h>
-int size = 10;
+
+char stack[10], val;
 int top = -1;
-char val;
-char STK[10];
-int isstkfull()
-{
-    if (top == (size - 1))
-        return 1;
-    else
-        return 0;
-}
-int isstkempty()
+int size = 10;
+int i, j, k;
+
+int isStackEmpty()
 {
     if (top == -1)
+    {
         return 1;
+    }
     else
+    {
         return 0;
+    }
+}
+
+int isStackFull()
+{
+    if (top == (size - 1))
+    {
+        return 1;
+    }
+    else
+    {
+        return 0;
+    }
 }
 
 void push(char val)
 {
-    if (isstkfull())
-        printf("Stack is isstkfull\n");
+    if (isStackFull())
+    {
+        printf("Stack is FULL!\n");
+    }
     else
     {
         top++;
-        STK[top] = val;
+        stack[top] = val;
     }
 }
+
 char pop()
 {
-    if (isstkempty())
-        printf("Stack is isstkempty\n");
+    if (isStackEmpty())
+    {
+        printf("Stack is Empty!!\n");
+    }
     else
     {
-        val = STK[top];
+        val = stack[top];
         top--;
     }
     return val;
 }
-int stktop()
+
+int stackTop()
 {
-    if (isstkempty())
-        printf("Stack is isstkempty\n");
+    if (isStackEmpty())
+    {
+        printf("Stack is Empty!!\n");
+    }
     else
     {
-        val = STK[top];
+        val = stack[top];
     }
     return val;
 }
-int pri(char ch)
+
+int precedence(char ch)
 {
     switch (ch)
     {
@@ -69,17 +88,17 @@ int pri(char ch)
     }
     return val;
 }
+
 int main()
 {
-    char infix[10];
-    char postfix[10];
-    int len, i, p = 0;
-    char ip, pp, next, pinc;
-    // clrscr();
-    printf("Enter Infix Expression = ");
+    char infix[10], postfix[10];
+    char ip, pp, pinc, next;
+    int len;
+    int i, p = 0;
+    printf("Enter Your Infix Expression: ");
     scanf("%s", infix);
     len = strlen(infix);
-    for (i = 0; i < len; i++)
+    for (i = 0; i <= len; i++)
     {
         ip = infix[i];
         switch (ip)
@@ -98,7 +117,7 @@ int main()
         case '*':
         case '/':
         case '%':
-            while ((isstkempty() != 1) && (pri(ip) <= pri(stktop())))
+            while ((isStackEmpty() != 1) && (precedence(ip) <= precedence(stackTop())))
             {
                 postfix[p++] = pop();
             }
@@ -108,16 +127,14 @@ int main()
             postfix[p++] = ip;
         }
     }
-    while (!isstkempty())
+    while (!isStackEmpty())
     {
         postfix[p++] = pop();
     }
-
-    printf("\npostfix expression=\n");
+    printf("Postfix Expression is : ");
     for (i = 0; i < p; i++)
     {
-        printf("%c ", postfix[i]);
+        printf("%c", postfix[i]);
     }
     return 0;
-    // getch();
 }
